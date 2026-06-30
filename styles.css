@@ -1,0 +1,271 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* Basic resets & custom fonts */
+body {
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  scroll-behavior: smooth;
+}
+
+.resume-preview-font {
+  font-family: 'Inter', sans-serif;
+}
+
+/* Glassmorphism utility */
+.glass {
+  background: rgba(10, 17, 26, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(92, 124, 137, 0.15);
+}
+
+.light .glass {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(92, 124, 137, 0.15);
+}
+
+/* Cosmic Starry Background */
+.star-bg {
+  background: radial-gradient(circle at center, #1F4959 0%, #0A111A 90%);
+  position: relative;
+  overflow: hidden;
+}
+
+.star-bg::after {
+  content: " ";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: 
+    radial-gradient(1.5px 1.5px at 20px 30px, #ffffff, rgba(0,0,0,0)),
+    radial-gradient(2px 2px at 40px 70px, #ffffff, rgba(0,0,0,0)),
+    radial-gradient(1px 1px at 50px 160px, #ffffff, rgba(0,0,0,0)),
+    radial-gradient(2.5px 2.5px at 90px 40px, #ffffff, rgba(0,0,0,0)),
+    radial-gradient(1.5px 1.5px at 130px 80px, #ffffff, rgba(0,0,0,0)),
+    radial-gradient(2px 2px at 160px 120px, #ffffff, rgba(0,0,0,0)),
+    radial-gradient(1px 1px at 200px 30px, #ffffff, rgba(0,0,0,0)),
+    radial-gradient(2.5px 2.5px at 250px 210px, #ffffff, rgba(0,0,0,0)),
+    radial-gradient(1.5px 1.5px at 290px 140px, #ffffff, rgba(0,0,0,0)),
+    radial-gradient(2px 2px at 320px 80px, #ffffff, rgba(0,0,0,0)),
+    radial-gradient(1px 1px at 360px 180px, #ffffff, rgba(0,0,0,0)),
+    radial-gradient(2px 2px at 400px 110px, #ffffff, rgba(0,0,0,0)),
+    radial-gradient(1.5px 1.5px at 440px 310px, #ffffff, rgba(0,0,0,0)),
+    radial-gradient(2px 2px at 480px 200px, #ffffff, rgba(0,0,0,0)),
+    radial-gradient(1px 1px at 530px 90px, #ffffff, rgba(0,0,0,0)),
+    radial-gradient(2.5px 2.5px at 580px 240px, #ffffff, rgba(0,0,0,0)),
+    radial-gradient(1.5px 1.5px at 620px 150px, #ffffff, rgba(0,0,0,0)),
+    radial-gradient(2px 2px at 670px 40px, #ffffff, rgba(0,0,0,0)),
+    radial-gradient(1px 1px at 710px 310px, #ffffff, rgba(0,0,0,0)),
+    radial-gradient(2.5px 2.5px at 750px 180px, #ffffff, rgba(0,0,0,0)),
+    radial-gradient(1.5px 1.5px at 800px 90px, #ffffff, rgba(0,0,0,0)),
+    radial-gradient(2px 2px at 850px 290px, #ffffff, rgba(0,0,0,0));
+  background-size: 550px 350px;
+  opacity: 0.45;
+  animation: starsBlink 6s infinite ease-in-out;
+  pointer-events: none;
+}
+
+@keyframes starsBlink {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.7; }
+}
+
+/* Radial Progress Bar */
+.radial-progress {
+  --value: 0;
+  --size: 5rem;
+  --thickness: 6px;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  display: inline-grid;
+  place-content: center;
+  position: relative;
+}
+
+.radial-progress::before {
+  content: "";
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  border-radius: 50%;
+  background: radial-gradient(farthest-side, currentColor 98%, #0000) top/var(--thickness) var(--thickness) no-repeat,
+              conic-gradient(currentColor calc(var(--value) * 1%), rgba(92, 124, 137, 0.15) 0);
+  -webkit-mask: radial-gradient(farthest-side, #0000 calc(99% - var(--thickness)), #000 100%);
+          mask: radial-gradient(farthest-side, #0000 calc(99% - var(--thickness)), #000 100%);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #5C7C89;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #1F4959;
+}
+
+/* Shimmer/Skeleton Loading Animation */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.skeleton-shimmer {
+  background: linear-gradient(90deg, rgba(92, 124, 137, 0.08) 25%, rgba(92, 124, 137, 0.18) 50%, rgba(92, 124, 137, 0.08) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.6s infinite linear;
+}
+
+.dark .skeleton-shimmer {
+  background: linear-gradient(90deg, rgba(31, 73, 89, 0.15) 25%, rgba(92, 124, 137, 0.25) 50%, rgba(31, 73, 89, 0.15) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.6s infinite linear;
+}
+
+/* Pulse Glow */
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(31, 73, 89, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(92, 124, 137, 0.45);
+  }
+}
+
+.pulse-glow {
+  animation: pulseGlow 3s infinite ease-in-out;
+}
+
+/* PDF Template Styling - optimized for ATS parsing */
+.ats-resume-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: #ffffff;
+  color: #242424;
+  padding: 40px 50px;
+  box-sizing: border-box;
+  font-family: 'Inter', Arial, sans-serif;
+  line-height: 1.5;
+  font-size: 13px;
+}
+
+.ats-resume-container h1 {
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: #0A111A;
+  letter-spacing: -0.025em;
+  margin-bottom: 4px;
+}
+
+.ats-resume-container h2 {
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #1F4959;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid #5C7C89;
+  padding-bottom: 3px;
+  margin-top: 18px;
+  margin-bottom: 8px;
+}
+
+.ats-resume-container .contact-info {
+  font-size: 11px;
+  color: #5C7C89;
+  margin-bottom: 12px;
+}
+
+.ats-resume-container .section-item {
+  margin-bottom: 10px;
+}
+
+.ats-resume-container .item-header {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+  color: #242424;
+  margin-bottom: 2px;
+}
+
+.ats-resume-container .item-subheader {
+  display: flex;
+  justify-content: space-between;
+  font-style: italic;
+  color: #5C7C89;
+  margin-bottom: 4px;
+  font-size: 12px;
+}
+
+.ats-resume-container ul {
+  list-style-type: disc;
+  padding-left: 18px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+.ats-resume-container li {
+  margin-bottom: 3px;
+  color: #333333;
+}
+
+.ats-resume-container .skills-list {
+  font-size: 12px;
+  color: #333333;
+}
+
+/* Page break helper for long resumes */
+.page-break {
+  page-break-before: always;
+}
+
+/* Transition utility */
+.transition-all-300 {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Brand Button Accents (Lavender matching Sprocket Rocket template) */
+.bg-lavender {
+  background-color: #8b5cf6;
+}
+
+.bg-lavender:hover {
+  background-color: #7c3aed;
+}
+
+.text-lavender {
+  color: #a78bfa;
+}
+
+.border-lavender {
+  border-color: #8b5cf6;
+}
+
+/* Partner logo section fonts */
+.partner-logo {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 800;
+  font-size: 18px;
+  letter-spacing: -0.05em;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.partner-logo:hover {
+  opacity: 1;
+}
